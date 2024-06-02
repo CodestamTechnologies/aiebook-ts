@@ -34,7 +34,7 @@ export default function Homepage() {
                     setLoading(true);
                     const html = document.getElementsByTagName("html")[0];
                     const exporter = new Html2Pdf(html);
-                //     await exporter.getPdf(true);
+                    await exporter.getPdf(true);
                     await setLoading(false);
                 }
             }
