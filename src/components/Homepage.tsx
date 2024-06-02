@@ -2,7 +2,7 @@ import { useRef, useState } from "react";
 import { gemini_completion } from "@/gemini";
 import MarkdownEditor from "@/components/MarkdownEditor";
 import { useReactToPrint } from 'react-to-print';
-import Html2Pdf from 'html2pdf.js';
+import Html2Pdf from 'js-html2pdf';
 
 interface SubChapter {
     name: string;
@@ -33,7 +33,8 @@ export default function Homepage() {
                 if (document) {
                     setLoading(true);
                     const html = document.getElementsByTagName("html")[0];
-                    await Html2Pdf().from(html).save();
+                    const exporter = new Html2Pdf(html);
+                    await exporter.getPdf(true);
                     await setLoading(false);
                 }
             }
